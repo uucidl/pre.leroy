@@ -1,0 +1,1 @@
+clang -std=c89 -Wall -Werror -fsyntax-only proposals/uu_turtle.h
