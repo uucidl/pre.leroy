@@ -1,5 +1,5 @@
 /*
- * @url: https: *people.eecs.berkeley.edu/~bh/pdf/v2ch14.pdf
+ * @url: https://people.eecs.berkeley.edu/~bh/pdf/v2ch14.pdf
  * @lang: c89
  * @taglist: graphics
  *
