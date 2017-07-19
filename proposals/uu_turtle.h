@@ -3,6 +3,8 @@
  * @lang: c89
  * @taglist: graphics
  *
+ * A machine using a polar, relative based coordinate system, with optional
+ * wrap-around.
  *
  * Screen boundaries are set so that (-100, -100) .. (100, 100) is fully visible
  * on the screen, with correct aspect ratio.
@@ -10,6 +12,8 @@
  * Headings in degrees are measured clockwise from the positive Y up axis, which
  * differs from mathematical convention of measuring angles from the positive X
  * axis, counter-clockwise.
+ *
+ * Seymour Papert introduced the turtle in the Logo language in the late 1960s
  */
 
 struct Turtle;
