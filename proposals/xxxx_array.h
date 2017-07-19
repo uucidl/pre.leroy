@@ -1,10 +1,15 @@
 /*
  * @url: http://cr.yp.to/lib/array.html
  * @taglist: ADT
+ * @lang: c89
+ *
+ * A linear and growable region of memory.
  *
  * TODO(uucidl): figure out whether to use int64, size_t or?
  * size_t is problematic in that it's not signed and therefore potentially hard
- * to use.
+ * to use. DJB uses int64 which we don't have a definition of in C89
+ *
+ * NOTE(uucidl): this interface does not support custom allocators.
  */
 
 /*
