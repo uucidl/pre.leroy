@@ -1,13 +1,9 @@
 /*
  * @url: http://cr.yp.to/lib/array.html
  * @taglist: ADT
- * @lang: c89
+ * @lang: c99
  *
  * A linear and growable region of memory.
- *
- * TODO(uucidl): figure out whether to use int64, size_t or?
- * size_t is problematic in that it's not signed and therefore potentially hard
- * to use. DJB uses int64 which we don't have a definition of in C89
  *
  * NOTE(uucidl): this interface does not support custom allocators.
  */
@@ -41,6 +37,8 @@
  * At this point it is unallocated. The array library provides various
  * allocation and inspection functions.
  */
+
+#include <stdint.h>
 
 struct ArrayHeader;
 typedef struct ArrayHeader Array;
@@ -80,13 +78,13 @@ typedef struct ArrayHeader Array;
 * without touching x. In particular, array_allocate returns 0 if
 *
 * - x has failed, or
-* - pos is SIZE_MAX, or
+* - pos is negative, or
 * - not enough memory is available.
 *
 * array_allocate does not change x to have failed; if you want to do that, use
 * array_fail.
 */
-void *array_allocate(Array *x, size_t element_size, size_t pos);
+void *array_allocate(Array *x, size_t element_size, int64_t pos);
 
 /*
 array_get is similar to array_allocate, but it does not allocate any extra
@@ -94,7 +92,7 @@ bytes, and it does not initialize any extra bytes. It returns 0 if x is
 unallocated, for example, or if fewer than (pos+1)*sizeof(t) bytes are
 initialized.
 */
-void *array_get(Array *x, size_t element_size, size_t pos);
+void *array_get(Array *x, size_t element_size, int64_t pos);
 
 /* array_start is the same as array_get with pos equal to 0. */
 void *array_start(Array *x);
@@ -106,16 +104,16 @@ void *array_start(Array *x);
  * for position array_length.
  *
  * If x is unallocated, array_length return 0.
- * If x has failed, array_length and array_bytes return SIZE_MAX.
+ * If x has failed, array_length and array_bytes return -1.
  */
-size_t array_length(Array *x, size_t element_size);
+int64_t array_length(Array *x, size_t element_size);
 
 /* array_bytes returns the number of initialized bytes in x, without regard to
  * t.
  * - If x is unallocated, array_bytes return 0.
- * - If x has failed, array_length and array_bytes return SIZE_MAX.
+ * - If x has failed, array_length and array_bytes return -1.
  */
-size_t array_bytes(Array *x);
+int64_t array_bytes(Array *x);
 
 /*
  * Truncation and deallocation
@@ -210,4 +208,4 @@ void array_cat0(Array *x);
 /* array_cate is like array_cat, but uses only byte positions pos through stop-1
  * in y. It fails if pos is negative, or if stop is smaller than pos, or if the
  * number of initialized bytes in y is smaller than stop. */
-void array_cate(Array *x, Array *y, size_t pos, size_t stop);
+void array_cate(Array *x, Array *y, int64_t pos, int64_t stop);
