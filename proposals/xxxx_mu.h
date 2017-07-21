@@ -17,8 +17,8 @@ enum {
     MU_MAX_KEYS = 256,
     MU_MAX_TEXT = 256,
     MU_MAX_ERROR = 1024,
-    MU_CTRL = 0x11, // VK_CONTROL
-    MU_ALT = 0x12, // VK_MENU
+    MU_CTRL = 0x11,  // VK_CONTROL
+    MU_ALT = 0x12,   // VK_MENU
     MU_SHIFT = 0x10, // VK_SHIFT
     MU_MAX_AUDIO_BUFFER = 2 * 1024
 };
@@ -100,7 +100,7 @@ struct Mu_AudioBuffer {
     struct Mu_AudioFormat format;
 };
 
-typedef void(*Mu_AudioCallback)(struct Mu_AudioBuffer *buffer);
+typedef void (*Mu_AudioCallback)(struct Mu_AudioBuffer *buffer);
 
 struct Mu_Audio {
     struct Mu_AudioFormat format;
@@ -124,7 +124,7 @@ struct Mu_Time {
     uint64_t ticks_per_second;
 };
 
-struct Mu_Win32;
+/* @platform{win32} */ struct Mu_Win32;
 
 struct Mu {
     Mu_Bool initialized;
@@ -143,7 +143,7 @@ struct Mu {
 
     struct Mu_Time time;
     struct Mu_Audio audio;
-    struct Mu_Win32* win32;
+    /* @platform{win32} */ struct Mu_Win32 *win32;
 };
 
 Mu_Bool Mu_Initialize(struct Mu *mu);

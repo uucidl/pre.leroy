@@ -6,7 +6,8 @@
 
 typedef void *HANDLE;
 typedef struct _XINPUT_STATE XINPUT_STATE;
-typedef unsigned long (__stdcall *XINPUTGETSTATE)(unsigned long dwUserIndex, XINPUT_STATE* pState);
+typedef unsigned long(__stdcall *XINPUTGETSTATE)(unsigned long dwUserIndex,
+                                                 XINPUT_STATE *pState);
 
 struct IAudioClient;
 struct IAudioRenderClient;
