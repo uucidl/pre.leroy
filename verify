@@ -1,3 +1,5 @@
 clang -std=c89 -Wall -Werror -fsyntax-only proposals/xxxx_turtle.h
 clang -std=c89 -Wall -Werror -fsyntax-only proposals/xxxx_array.h
 clang -std=c89 -Wall -Werror -fsyntax-only proposals/xxxx_tasks.h
+clang -std=c99 -Wall -Werror -fsyntax-only proposals/xxxx_mu.h
+clang -std=c99 -Wall -Werror -fsyntax-only proposals/xxxx_mu_win32.h
