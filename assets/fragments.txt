@@ -1,0 +1,11 @@
+@fragment: {
+#pragma once
+
+#ifdef __cplusplus
+#define @var{apiname}_EXTERN_BEGIN extern "C" {
+#define @var{apiname}_EXTERN_END }
+#else
+#define @var{apiname}_EXTERN_BEGIN
+#define @var{apiname}_EXTERN_END
+#endif
+}
